@@ -12,7 +12,7 @@
 
         <form action="create_subject.php" method="post">
             <p>Menu name:
-                <input type="text" name="menb_name" value="" />
+                <input type="text" name="menu_name" value="" />
             </p>
             <p>Position:
                 <select name="position">
@@ -30,9 +30,10 @@
             <p>Visible:
                 <input type="radio" name="visible" value="o" /> No
                 &nbsp;
-                <input type="radio" name="visible" value="1" />
+                <input type="radio" name="visible" value="1" /> Yes
+<!--                <input type="radio" name="visible" value="0"/>-->
             </p>
-            <input type="submit" value="Create Subject" />
+            <input type="submit" name="submit" value="Create Subject" />
         </form>
         <br />
         <a href="manage_content.php">Cancel</a>
