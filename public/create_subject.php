@@ -1,3 +1,4 @@
+<?php require_once("../includes/session.php"); ?>
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
 
@@ -18,11 +19,11 @@
         var_dump($result);
 
         if($result) {
-
+        $_SESSION["message"] = "Subject created.";
             redirect_to("manage_content.php");
 
         } else {
-
+            $_SESSION["message"] = "Subject creation failed";
             redirect_to("new_subject.php");
 
         }
