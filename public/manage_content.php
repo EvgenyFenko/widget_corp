@@ -27,7 +27,10 @@
             Menu name: <?php echo $current_subject["menu_name"]; ?><br />
             
         <?php } elseif ($selected_page_id) { ?>
-            <?php echo $selected_page_id; ?>
+
+            <?php $current_page = find_page_by_id($selected_page_id); ?>
+            Page name: <?php echo $current_page["menu_name"]; ?><br />
+
         <?php } else { ?>
             Please select a subject or a page.
         <?php }?>

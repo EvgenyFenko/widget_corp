@@ -44,7 +44,9 @@
         $query .= "WHERE id = {$safe_subject_id} ";
         $query .= "LIMIT 1";
         $subject_set = mysqli_query($connection, $query);
+
         confirm_query($subject_set);
+
         if($subject = mysqli_fetch_assoc($subject_set)){
             return $subject;
         } else {
@@ -89,5 +91,26 @@
     mysqli_free_result($subject_set);
     $output .= "</ul>";
     return $output;
+    }
+
+    function find_page_by_id($page_id){
+        global $connection;
+
+        $safe_page_id = mysqli_real_escape_string($connection, $page_id);
+
+        $query = "SELECT * ";
+        $query .= "FROM pages ";
+        $query .= "WHERE id = {$safe_page_id} ";
+        $query .= "LIMIT 1";
+        $pages_set = mysqli_query($connection, $query);
+
+        confirm_query($pages_set);
+
+        if($page = mysqli_fetch_assoc($pages_set)){
+
+            return $page;
+        } else {
+            return null;
+        }
     }
 ?>
