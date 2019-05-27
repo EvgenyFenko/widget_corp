@@ -43,7 +43,7 @@
         $query .= "FROM subjects ";
         $query .= "WHERE id = {$safe_subject_id} ";
         $query .= "LIMIT 1";
-        $page_set = mysqli_query($connection, $query);
+        $subject_set = mysqli_query($connection, $query);
         confirm_query($subject_set);
         if($subject = mysqli_fetch_assoc($subject_set)){
             return $subject;
