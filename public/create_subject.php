@@ -40,6 +40,8 @@
 
         }
 
+    } else {
+        redirect_to("new_subject.php");
     }
 ?>
 
