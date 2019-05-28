@@ -44,8 +44,6 @@ if(isset($_POST['submit'])) {
         echo '<br />';
         $result = mysqli_query($connection, $query);
 
-        var_dump($result);
-
         if ($result && mysqli_affected_rows($connection) == 1) {
             $_SESSION["message"] = "Subject updated.";
             redirect_to("manage_content.php");
@@ -106,6 +104,9 @@ if(isset($_POST['submit'])) {
         </form>
         <br />
         <a href="manage_content.php">Cancel</a>
+        &nbsp;
+        &nbsp;
+        <a href="delete_subject.php?subject=<?php echo $current_subject["id"]; ?>" onclick="return confirm('Are you sure?');"> Delete subject</a>
     </div>
 </div>
 
