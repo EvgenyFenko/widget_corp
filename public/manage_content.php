@@ -4,6 +4,12 @@
 <?php include ("../includes/layouts/header.php"); ?>
 <?php find_selected_page() ?>
 
+<!--debug-->
+<?php echo '$current_subject = '; var_dump($current_subject); ?>
+<br />
+<?php echo '$current_page = '; var_dump($current_page); ?>
+
+
 <div id="main">
     <div id="navigation">
         <br />
@@ -32,6 +38,7 @@
                 <?php echo htmlentities($current_page["content"]); ?><br />
             </div>
             <br />
+            <a href="edit_page.php?page=<?php echo urlencode($current_page["id"]); ?>">Edit Page</a>
         <?php } else { ?>
             Please select a subject or a page.
         <?php }?>

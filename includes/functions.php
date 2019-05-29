@@ -138,7 +138,7 @@
             $output .= "<ul class=\"pages\">";
             while ($page = mysqli_fetch_assoc($page_set)){
                 $output .= "<li ";
-                if($page_array && $page['id'] == $page_array) {
+                if($page_array && $page['id'] == $page_array["id"]) {
                     $output .= "class=\"selected\"";
                 }
                 $output .= ">";
