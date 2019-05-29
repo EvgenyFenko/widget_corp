@@ -80,14 +80,15 @@ if(isset($_POST['submit'])) {
         <h2>Edit Page <?php echo htmlentities($current_page["menu_name"]); ?></h2>
 
         <form action="edit_page.php?page=<?php echo urlencode($current_page["id"]); ?>" method="post">
-            <p>Menu name:
-                <input type="text" name="menu_name" value="<?php echo htmlentities($current_subject["menu_name"]); ?>" />
+            <p>Page name:
+                <input type="text" name="menu_name" value="<?php echo htmlentities($current_page["menu_name"]); ?>" />
             </p>
             <p>Position:
                 <select name="position">
                     <?php
-                    $subject_set = find_all_subjects();
+                    $pages_set = find_all_pages_of_current_subject($current_page["subject_id"]);
                     $subject_count = mysqli_num_rows($subject_set);
+                    var_dump($subject_count);
                     for($count = 1; $count <= $subject_count; $count++) {
                         echo "<option value=\"{$count}\"";
                         if($current_subject["position"] == $count) {
@@ -99,6 +100,7 @@ if(isset($_POST['submit'])) {
 
 
                 </select>
+                <?php echo "!!!!!!!!!!".$subject_set ?>
             </p>
             <p>Visible:
                 <input type="radio" name="visible" value="o" <?php if($current_subject["visible"] == 0) { echo "checked"; }?>/> No

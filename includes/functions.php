@@ -47,6 +47,21 @@
         return $subject_set;
     }
 
+    function find_all_pages_of_current_subject($subject_id) {
+        global $connection;
+
+        $safe_subject_id = mysqli_real_escape_string($connection, $subject_id);
+
+        $query = "SELECT *";
+        $query .= "FROM pages ";
+        $query .= "WHERE visible = 1 ";
+        $query .= "AND subject_id = {$safe_subject_id} ";
+        $query .= "ORDER by position ASC";
+        $pages_set = mysqli_query($connection, $query);
+        confirm_query($pages_set);
+        return $pages_set;
+    }
+
     function find_pages_for_subject($subject_id){
         global $connection;
 
