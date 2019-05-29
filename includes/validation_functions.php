@@ -20,6 +20,7 @@
         global $errors;
         foreach ($required_fields as $field) {
             $value = trim($_POST[$field]);
+            echo $value.'<br />';
             if(!has_presence($value)) {
                 $errors[$field] = fieldname_as_text($field) . " can't be blank";
             }

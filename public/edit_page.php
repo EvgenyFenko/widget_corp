@@ -21,12 +21,14 @@ if(!$current_page) {
 
 <?php
 if(isset($_POST['submit'])) {
+echo '<br />';
+    echo '<br />';
+    echo '<br />';
+var_dump($_POST);
 
 
 
-
-
-    $required_fields = array("menu_name", "position", "visible");
+    $required_fields = array("menu_name", "position", "visible", "content");
     validate_presence($required_fields);
 
     $fields_with_max_lengths = array("menu_name" => 30);
@@ -34,12 +36,12 @@ if(isset($_POST['submit'])) {
 
     if(empty($errors)) {
 
-        $id = $current_subject["id"];
+        $id = $current_page["id"];
         $menu_name = mysql_prep($_POST["menu_name"]);
         $position = (int)$_POST["position"];
         $visible = (int)$_POST["visible"];
 
-        $query = "UPDATE subjects SET ";
+        $query = "UPDATE pages SET ";
         $query .= " menu_name = '{$menu_name}', ";
         $query .= "position = {$position}, ";
         $query .= "visible = {$visible} ";
@@ -51,7 +53,7 @@ if(isset($_POST['submit'])) {
         $result = mysqli_query($connection, $query);
 
         if ($result && mysqli_affected_rows($connection) >= 0) {
-            $_SESSION["message"] = "Subject updated.";
+            $_SESSION["message"] = "Page updated.";
             redirect_to("manage_content.php");
 
         } else {
@@ -87,11 +89,10 @@ if(isset($_POST['submit'])) {
                 <select name="position">
                     <?php
                     $pages_set = find_all_pages_of_current_subject($current_page["subject_id"]);
-                    $subject_count = mysqli_num_rows($subject_set);
-                    var_dump($subject_count);
-                    for($count = 1; $count <= $subject_count; $count++) {
+                    $pages_count = mysqli_num_rows($pages_set);
+                    for($count = 1; $count <= $pages_count; $count++) {
                         echo "<option value=\"{$count}\"";
-                        if($current_subject["position"] == $count) {
+                        if($current_page["position"] == $count) {
                             echo " selected";
                         }
                         echo ">{$count}</option>";
@@ -100,21 +101,22 @@ if(isset($_POST['submit'])) {
 
 
                 </select>
-                <?php echo "!!!!!!!!!!".$subject_set ?>
             </p>
             <p>Visible:
-                <input type="radio" name="visible" value="o" <?php if($current_subject["visible"] == 0) { echo "checked"; }?>/> No
+                <input type="radio" name="visible" value="o" <?php if($current_page["visible"] == 0) { echo "checked"; }?>/> No
                 &nbsp;
-                <input type="radio" name="visible" value="1" <?php if($current_subject["visible"] == 1) { echo "checked"; }?>/> Yes
-                <!--                <input type="radio" name="visible" value="0"/>-->
+                <input type="radio" name="visible" value="1" <?php if($current_page["visible"] == 1) { echo "checked"; }?>/> Yes
             </p>
-            <input type="submit" name="submit" value="Edit Subject" />
+            <p>
+                <input type="text" name="content" value="<?php echo htmlentities($current_page["content"]); ?>" />
+            </p>
+            <input type="submit" name="submit" value="Edit Page" />
         </form>
         <br />
         <a href="manage_content.php">Cancel</a>
         &nbsp;
         &nbsp;
-        <a href="delete_subject.php?subject=<?php echo urlencode($current_subject["id"]); ?>" onclick="return confirm('Are you sure?');"> Delete subject</a>
+        <a href="delete_page.php?subject=<?php echo urlencode($current_page["id"]); ?>" onclick="return confirm('Are you sure?');"> Delete page</a>
     </div>
 </div>
 
