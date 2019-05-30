@@ -33,11 +33,12 @@
             <p>Position:
                 <select name="position">
                     <?php
-                    $page_set = find_all_subjects();
-                    $subject_count = mysqli_num_rows($subject_set);
-                    for($count = 1; $count <= ($subject_count + 1); $count++) {
-                        echo "<option value=\"{$count}\">{$count}</option>";
-                    }
+                        $page_set = find_all_positions_of_pages();
+                        $page_count = mysqli_fetch_assoc($page_set);
+                        $page_count = $page_count["COUNT(DISTINCT position)"];
+                        for($count = 1; $count <= ($page_count + 1); $count++) {
+                            echo "<option value=\"{$count}\">{$count}</option>";
+                        }
                     ?>
 
 
@@ -47,7 +48,6 @@
                 <input type="radio" name="visible" value="o" /> No
                 &nbsp;
                 <input type="radio" name="visible" value="1" /> Yes
-                <!--                <input type="radio" name="visible" value="0"/>-->
             </p>
             <p>Content:
                 <input type="text" name="content" value="">

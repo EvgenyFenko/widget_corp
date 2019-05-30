@@ -24,6 +24,7 @@
                     <?php
                         $subject_set = find_all_subjects();
                         $subject_count = mysqli_num_rows($subject_set);
+                        echo "aaa".$subject_count;
                         for($count = 1; $count <= ($subject_count + 1); $count++) {
                             echo "<option value=\"{$count}\">{$count}</option>";
                         }
@@ -36,7 +37,6 @@
                 <input type="radio" name="visible" value="o" /> No
                 &nbsp;
                 <input type="radio" name="visible" value="1" /> Yes
-<!--                <input type="radio" name="visible" value="0"/>-->
             </p>
             <input type="submit" name="submit" value="Create Subject" />
         </form>

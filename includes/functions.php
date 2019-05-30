@@ -181,4 +181,13 @@
     $output .= "</ul>";
     return $output;
     }
+
+    function find_all_positions_of_pages(){
+        global $connection;
+        $query = "SELECT COUNT(DISTINCT position) ";
+        $query .= "FROM pages";
+        $count = mysqli_query($connection, $query);
+        confirm_query($query);
+        return $count;
+    }
 ?>
