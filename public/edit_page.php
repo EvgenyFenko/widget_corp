@@ -5,12 +5,6 @@
 
 <?php find_selected_page() ?>
 
-<!--debug-->
-<?php echo '$current_subject = '; var_dump($current_subject); ?>
-<br />
-<?php echo '$current_page = '; var_dump($current_page); ?>
-
-
 <?php
 if(!$current_page) {
 
@@ -20,48 +14,44 @@ if(!$current_page) {
 ?>
 
 <?php
-if(isset($_POST['submit'])) {
-echo '<br />';
-    echo '<br />';
-    echo '<br />';
-var_dump($_POST);
+    if(isset($_POST['submit'])) {
 
 
 
-    $required_fields = array("menu_name", "position", "visible", "content");
-    validate_presence($required_fields);
+        $required_fields = array("menu_name", "position", "visible", "content");
+        validate_presence($required_fields);
 
-    $fields_with_max_lengths = array("menu_name" => 30);
-    validate_max_lengths($fields_with_max_lengths);
+        $fields_with_max_lengths = array("menu_name" => 30);
+        validate_max_lengths($fields_with_max_lengths);
 
-    if(empty($errors)) {
+        if(empty($errors)) {
 
-        $id = $current_page["id"];
-        $menu_name = mysql_prep($_POST["menu_name"]);
-        $position = (int)$_POST["position"];
-        $visible = (int)$_POST["visible"];
+            $id = $current_page["id"];
+            $menu_name = mysql_prep($_POST["menu_name"]);
+            $position = (int)$_POST["position"];
+            $visible = (int)$_POST["visible"];
 
-        $query = "UPDATE pages SET ";
-        $query .= " menu_name = '{$menu_name}', ";
-        $query .= "position = {$position}, ";
-        $query .= "visible = {$visible} ";
-        $query .= "WHERE id = {$id} ";
-        $query .= "LIMIT 1";
+            $query = "UPDATE pages SET ";
+            $query .= " menu_name = '{$menu_name}', ";
+            $query .= "position = {$position}, ";
+            $query .= "visible = {$visible} ";
+            $query .= "WHERE id = {$id} ";
+            $query .= "LIMIT 1";
 
-        echo $query;
-        echo '<br />';
-        $result = mysqli_query($connection, $query);
+            echo $query;
+            echo '<br />';
+            $result = mysqli_query($connection, $query);
 
-        if ($result && mysqli_affected_rows($connection) >= 0) {
-            $_SESSION["message"] = "Page updated.";
-            redirect_to("manage_content.php");
+            if ($result && mysqli_affected_rows($connection) >= 0) {
+                $_SESSION["message"] = "Page updated.";
+                redirect_to("manage_content.php");
 
-        } else {
-            $message = "Subject update failed";
+            } else {
+                $message = "Subject update failed";
 
+            }
         }
-    }
-}else {
+    }else {
 }
 ?>
 
@@ -70,7 +60,7 @@ var_dump($_POST);
 
 <div id="main">
     <div id="navigation">
-        <?php echo navigation($current_subject, $current_page); ?>
+<?php //echo navigation($current_subject, $current_page); ?>
     </div>
     <div id="page">
         <?php

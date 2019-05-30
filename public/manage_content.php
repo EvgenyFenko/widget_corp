@@ -4,13 +4,6 @@
 <?php include ("../includes/layouts/header.php"); ?>
 <?php find_selected_page() ?>
 
-<!--debug-->
-<?php echo '$current_subject = ';
-var_dump($current_subject); ?>
-<br />
-<?php echo '$current_page = ';
-var_dump($current_page); ?>
-
 
 <div id="main">
     <div id="navigation">
