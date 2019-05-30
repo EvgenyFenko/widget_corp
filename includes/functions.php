@@ -47,6 +47,17 @@
         return $subject_set;
     }
 
+    function find_subjects(){
+    global $connection;
+
+    $query = "SELECT *";
+    $query .= "FROM subjects ";
+    $query .= "ORDER by id ASC";
+    $subject_set = mysqli_query($connection, $query);
+    confirm_query($subject_set);
+    return $subject_set;
+}
+
     function find_all_pages_of_current_subject($subject_id) {
         global $connection;
 

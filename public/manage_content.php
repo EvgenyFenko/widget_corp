@@ -17,6 +17,9 @@
         <?php echo navigation($current_subject, $current_page); ?>
         <br />
         <a href="new_subject.php">+ Add a subject</a>
+        <br />
+        <br />
+        <a href="new_page.php">+ Add a page</a>
     </div>
     <div id="page">
     <?php echo message(); ?>
