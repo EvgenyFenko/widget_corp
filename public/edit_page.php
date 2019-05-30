@@ -116,7 +116,7 @@ var_dump($_POST);
         <a href="manage_content.php">Cancel</a>
         &nbsp;
         &nbsp;
-        <a href="delete_page.php?subject=<?php echo urlencode($current_page["id"]); ?>" onclick="return confirm('Are you sure?');"> Delete page</a>
+        <a href="delete_page.php?page=<?php echo urlencode($current_page["id"]); ?>" onclick="return confirm('Are you sure?');"> Delete page</a>
     </div>
 </div>
 

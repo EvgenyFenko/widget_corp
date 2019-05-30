@@ -5,9 +5,11 @@
 <?php find_selected_page() ?>
 
 <!--debug-->
-<?php echo '$current_subject = '; var_dump($current_subject); ?>
+<?php echo '$current_subject = ';
+var_dump($current_subject); ?>
 <br />
-<?php echo '$current_page = '; var_dump($current_page); ?>
+<?php echo '$current_page = ';
+var_dump($current_page); ?>
 
 
 <div id="main">
