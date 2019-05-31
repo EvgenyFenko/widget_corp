@@ -107,13 +107,22 @@
         }
     }
 
+    function find_default_page_for_subject($subject_id) {
+        $page_set = find_pages_for_subject($subject_id);
+        if($first_page = mysqli_fetch_assoc($page_set)) {
+            return $first_page;
+        } else {
+            return null;
+        }
+    }
+
     function find_selected_page(){
         global $current_subject;
         global $current_page;
 
         if(isset($_GET['subject'])){
             $current_subject = find_subject_by_id($_GET['subject']);
-            $current_page = null;
+            $current_page = find_default_page_for_subject($current_subject);
         } elseif(isset($_GET['page'])){
             $current_page = find_page_by_id($_GET['page']);
             $current_subject = null;
