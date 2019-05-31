@@ -40,8 +40,6 @@ if(isset($_POST['submit'])) {
         $query .= "WHERE id = {$id} ";
         $query .= "LIMIT 1";
 
-        echo $query;
-        echo '<br />';
         $result = mysqli_query($connection, $query);
 
         if ($result && mysqli_affected_rows($connection) >= 0) {
@@ -98,7 +96,6 @@ if(isset($_POST['submit'])) {
                 <input type="radio" name="visible" value="o" <?php if($current_subject["visible"] == 0) { echo "checked"; }?>/> No
                 &nbsp;
                 <input type="radio" name="visible" value="1" <?php if($current_subject["visible"] == 1) { echo "checked"; }?>/> Yes
-                <!--                <input type="radio" name="visible" value="0"/>-->
             </p>
             <input type="submit" name="submit" value="Edit Subject" />
         </form>
