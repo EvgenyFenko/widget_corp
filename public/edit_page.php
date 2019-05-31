@@ -8,60 +8,60 @@
 <?php
 
 
-if(!$current_page) {
+    if(!$current_page) {
 
 
-    redirect_to("manage_content.php");
-}
+        redirect_to("manage_content.php");
+    }
 ?>
 
 <?php
-if(isset($_POST['submit'])) {
+    if(isset($_POST['submit'])) {
 
 
-    $id = $current_page["id"];
-    $menu_name = mysql_prep($_POST["menu_name"]);
-    $position = (int)$_POST["position"];
-    $visible = (int)$_POST["visible"];
-    $content = mysqli_prep($_POST["content"]);
+        $id = $current_page["id"];
+        $menu_name = mysql_prep($_POST["menu_name"]);
+        $position = (int)$_POST["position"];
+        $visible = (int)$_POST["visible"];
+        $content = mysqli_prep($_POST["content"]);
 
 
-    $required_fields = array("menu_name", "position", "visible", "content");
-    validate_presence($required_fields);
+        $required_fields = array("menu_name", "position", "visible", "content");
+        validate_presence($required_fields);
 
-    $fields_with_max_lengths = array("menu_name" => 30);
-    validate_max_lengths($fields_with_max_lengths);
+        $fields_with_max_lengths = array("menu_name" => 30);
+        validate_max_lengths($fields_with_max_lengths);
 
-    if(empty($errors)) {
+        if(empty($errors)) {
 
 
 
-        $query = "UPDATE pages SET ";
-        $query .= " menu_name = '{$menu_name}', ";
-        $query .= "position = {$position}, ";
-        $query .= "visible = {$visible} ";
-        $query .= "content = '{$content}'";
-        $query .= "WHERE id = {$id} ";
-        $query .= "LIMIT 1";
-        $result = mysqli_query($connection, $query);
+            $query = "UPDATE pages SET ";
+            $query .= " menu_name = '{$menu_name}', ";
+            $query .= "position = {$position}, ";
+            $query .= "visible = {$visible} ";
+            $query .= "content = '{$content}'";
+            $query .= "WHERE id = {$id} ";
+            $query .= "LIMIT 1";
+            $result = mysqli_query($connection, $query);
 
-        if ($result && mysqli_affected_rows($connection) == 1) {
+            if ($result && mysqli_affected_rows($connection) == 1) {
 
-            $_SESSION["message"] = "Page updated.";
-            redirect_to("manage_content.php?page={$id}");
-        } else {
+                $_SESSION["message"] = "Page updated.";
+                redirect_to("manage_content.php?page={$id}");
+            } else {
 
-            $message = "Page update failed";
+                $message = "Page update failed";
 
+            }
         }
-    }
-}else {
+    }else {
 }
 
 
 
 ?>
-
+<?php $layout_context = "admin"; ?>
 <?php include ("../includes/layouts/header.php"); ?>
 
 <div id="main">
