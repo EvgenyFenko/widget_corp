@@ -23,7 +23,8 @@
         $menu_name = mysql_prep($_POST["menu_name"]);
         $position = (int)$_POST["position"];
         $visible = (int)$_POST["visible"];
-        $content = mysqli_prep($_POST["content"]);
+
+        $content = mysql_prep($_POST["content"]);
 
 
         $required_fields = array("menu_name", "position", "visible", "content");
@@ -37,12 +38,13 @@
 
 
             $query = "UPDATE pages SET ";
-            $query .= " menu_name = '{$menu_name}', ";
+            $query .= "menu_name = '{$menu_name}', ";
             $query .= "position = {$position}, ";
-            $query .= "visible = {$visible} ";
-            $query .= "content = '{$content}'";
+            $query .= "visible = {$visible}, ";
+            $query .= "content = '{$content}' ";
             $query .= "WHERE id = {$id} ";
             $query .= "LIMIT 1";
+
             $result = mysqli_query($connection, $query);
 
             if ($result && mysqli_affected_rows($connection) == 1) {
