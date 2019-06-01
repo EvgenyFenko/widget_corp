@@ -107,22 +107,27 @@
         }
     }
 
-    function find_default_page_for_subject($subject_id) {
+    function find_default_page_for_subfect($subject_id) {
         $page_set = find_pages_for_subject($subject_id);
-        if($first_page = mysqli_fetch_assoc($page_set)) {
+        if ($first_page = mysqli_fetch_assoc($page_set)){
             return $first_page;
         } else {
             return null;
         }
     }
 
-    function find_selected_page(){
+    function find_selected_page($public = false){
         global $current_subject;
         global $current_page;
 
         if(isset($_GET['subject'])){
             $current_subject = find_subject_by_id($_GET['subject']);
-            $current_page = find_default_page_for_subject($current_subject);
+            if ($public) {
+                $current_page = find_default_page_for_subfect($current_subject["id"]);
+            }else{
+                $current_page = null;
+            }
+
         } elseif(isset($_GET['page'])){
             $current_page = find_page_by_id($_GET['page']);
             $current_subject = null;

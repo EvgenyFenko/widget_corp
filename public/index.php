@@ -3,7 +3,7 @@
 <?php require_once("../includes/functions.php"); ?>
 <?php $layout_context = "public"; ?>
 <?php include ("../includes/layouts/header.php"); ?>
-<?php find_selected_page() ?>
+<?php find_selected_page(true) ?>
 
 <div id="main">
     <div id="navigation">
@@ -11,10 +11,8 @@
     </div>
     <div id="page">
         <?php if($current_subject) { ?>
-            <h2>Manage Subject</h2>
-            Menu name: <?php echo htmlentities($current_subject["menu_name"]); ?><br />
 
-         <?php } elseif ($current_page) { ?>
+
               <?php echo htmlentities($current_page["content"]); ?><br />
 
       <?php } else { ?>
@@ -22,6 +20,7 @@
         <?php }?>
     </div>
 </div>
+
 
 
 <?php include("../includes/layouts/footer.php"); ?>
