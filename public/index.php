@@ -10,7 +10,9 @@
         <?php echo public_navigation($current_subject, $current_page); ?>
     </div>
     <div id="page">
-        <?php if($current_subject) { ?>
+<?php //var_dump($current_page);
+//die(); ?>
+        <?php if($current_page) { ?>
             <h2><?php echo htmlentities($current_page["menu_name"]); ?></h2>
             <h2><?php echo htmlentities($current_page["content"]); ?></h2>
 
