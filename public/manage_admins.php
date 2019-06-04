@@ -9,6 +9,7 @@
 
     </div>
     <div id="page">
+        <?php echo message(); ?>
         <h2>Manage Admins</h2>
         <br />
         <table>

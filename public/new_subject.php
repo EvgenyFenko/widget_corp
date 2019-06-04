@@ -37,7 +37,6 @@
                 <input type="radio" name="visible" value="o" /> No
                 &nbsp;
                 <input type="radio" name="visible" value="1" /> Yes
-<!--                <input type="radio" name="visible" value="0"/>-->
             </p>
             <input type="submit" name="submit" value="Create Subject" />
         </form>
