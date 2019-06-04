@@ -4,7 +4,7 @@
 
 
 <?php
-    $current_subject = find_subject_by_id($_GET["subject"]);
+    $current_subject = find_subject_by_id($_GET["subject"], false);
     if(!$current_subject) {
 
     redirect_to("manage_content.php");
