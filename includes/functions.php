@@ -220,4 +220,15 @@
     $output .= "</ul>";
     return $output;
 }
+
+    function find_all_admins(){
+        global $connection;
+
+        $query = "SELECT * ";
+        $query .= "FROM admins ";
+        $query .= "ORDER by username ASC";
+        $admins_set = mysqli_query($connection, $query);
+        confirm_query($admins_set);
+        return $admins_set;
+}
 ?>

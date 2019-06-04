@@ -27,7 +27,6 @@
                 <h3>Pages in this subject:</h3>
                 <ul>
                     <?php
-                    die();
                         $subject_pages = find_pages_for_subject($current_subject["id"]);
                         while ($page = mysqli_fetch_assoc($subject_pages)) {
                             echo "<li>";
