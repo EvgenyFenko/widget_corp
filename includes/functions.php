@@ -231,4 +231,24 @@
         confirm_query($admins_set);
         return $admins_set;
 }
+
+    function find_admin_by_id($admin_id) {
+        global $connection;
+
+        $safe_admin_id = mysqli_real_escape_string($connection, $admin_id);
+
+        $query = "SELECT * ";
+        $query .= "FROM admins ";
+        $query .= "WHERE id = {$admin_id} ";
+        $query .= "LIMIT 1";
+        $admin_set = mysqli_query($connection, $query);
+
+        confirm_query($admin_set);
+
+        if($admin = mysqli_fetch_assoc($admin_set)){
+            return $admin;
+        } else {
+            return null;
+        }
+    }
 ?>
