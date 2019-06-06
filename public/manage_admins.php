@@ -26,7 +26,7 @@
                     $output .= "</td>";
                     $output .= "<td>";
                     $output .= "<a href = edit_admin.php?id=".$admins_set["id"].">Edit </a>";
-                    $output .= "<a href = delete_admin.php?id=".$admins_set["id"]."> Delete</a>";
+                    $output .= "<a href = delete_admin.php?id=".$admins_set["id"]." onclick=\"return confirm('Are you sure?');\"> Delete</a>";
                     $output .= "</td>";
                     $output .= "</tr>";
                     echo $output;

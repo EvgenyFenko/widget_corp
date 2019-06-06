@@ -239,7 +239,7 @@
 
         $query = "SELECT * ";
         $query .= "FROM admins ";
-        $query .= "WHERE id = {$admin_id} ";
+        $query .= "WHERE id = {$safe_admin_id} ";
         $query .= "LIMIT 1";
         $admin_set = mysqli_query($connection, $query);
 
