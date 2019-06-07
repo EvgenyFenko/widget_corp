@@ -11,12 +11,14 @@ if (isset($_POST["submit"])) {
     validate_presence($required_fields);
 
     if (empty($errors)) {
+
         $username = mysql_prep($_POST["username"]);
-        $password = mysql_prep($_POST["password"]);
+        $hashed_password = mysql_prep($_POST["password"]);
+
         $query = "INSERT INTO admins (";
         $query .= "username, hashed_password";
         $query .= ") VALUES (";
-        $query .= "'{$username}', '{$password}'";
+        $query .= "'{$username}', '{$hashed_password}'";
         $query .= ")";
 
         $result = mysqli_query($connection, $query);
@@ -28,8 +30,6 @@ if (isset($_POST["submit"])) {
             $_SESSION["message"] = "Admin creation failed.";
         }
     }
-
-
 }
 
 ?>
@@ -39,20 +39,20 @@ if (isset($_POST["submit"])) {
 
 <div id="main">
     <div id="navigation">
-
+        &nbsp;
     </div>
     <div id="page">
-        <h2>Create Admin</h2>
+
         <?php echo message(); ?>
         <?php echo form_errors($errors); ?>
-        <br />
 
+        <h2>Create Admin</h2>
         <form action="new_admin.php" method="post">
             <p>Username:
-                <input type="text" name="username">
+                <input type="text" name="username" value="">
             </p>
             <p>Password:
-                <input type="password" name="password">
+                <input type="password" name="password" value="">
             </p>
             <input type="submit" name="submit" value="Create Admin" />
         </form>

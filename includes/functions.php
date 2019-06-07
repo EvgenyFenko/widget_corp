@@ -227,9 +227,9 @@
         $query = "SELECT * ";
         $query .= "FROM admins ";
         $query .= "ORDER by username ASC";
-        $admins_set = mysqli_query($connection, $query);
-        confirm_query($admins_set);
-        return $admins_set;
+        $admin_set = mysqli_query($connection, $query);
+        confirm_query($admin_set);
+        return $admin_set;
 }
 
     function find_admin_by_id($admin_id) {
