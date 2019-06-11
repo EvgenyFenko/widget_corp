@@ -4,14 +4,20 @@
 <?php require_once("../includes/validation_functions.php"); ?>
 
 <?php
-    
+    $admin = find_admin_by_id($_GET["id"]);
+    if (!$admin) {
+        redirect_to("manage_admins.php");
+    }
+?>
+
+<?php
 
     if(isset($_POST['submit'])) {
         $required_fields = array("username", "hashed_password");
         validate_presence($required_fields);
 
         if(empty($errors)) {
-            $id = mysql_prep($_GET["id"]);
+            $id = $admin["id"];
             $username = mysql_prep($_POST["username"]);
             $password = mysql_prep($_POST["hashed_password"]);
 
@@ -23,7 +29,7 @@
 
             $result = mysqli_query($connection, $query);
 
-            if ($result && mysqli_affected_rows($connection) >= 0) {
+            if ($result && mysqli_affected_rows($connection) == 1) {
                 $_SESSION["message"] = "Admin updated.";
                 redirect_to("manage_admins.php");
             } else {
@@ -36,22 +42,19 @@
         <?php include ("../includes/layouts/header.php"); ?>
         <div id="main">
             <div id="navigation">
+                &nbsp;
             </div>
             <div id="page">
-                <?php
-                if(!empty($message)) {
-                    echo "<div class=\"message\">" . htmlentities($message) . "</div>";
-                }
-                ?>
+                <?php echo message(); ?>
                 <?php echo form_errors($errors); ?>
-                <?php $current_admin = find_admin_by_id($_GET['id']); ?>
-                <h2>Edit Admin <?php echo htmlentities($current_admin['username']) ?></h2>
-                <form action="edit_admin.php?id=<?php echo urlencode($current_admin["id"]); ?>" method="post">
+
+                <h2>Edit Admin <?php echo htmlentities($admin['username']) ?></h2>
+                <form action="edit_admin.php?id=<?php echo urlencode($admin["id"]); ?>" method="post">
                     <p>Username:
-                        <input type="text" name="username" value="<?php echo htmlentities($current_admin["username"]); ?>" />
+                        <input type="text" name="username" value="<?php echo htmlentities($admin["username"]); ?>" />
                     </p>
                     <p>Password:
-                        <input type="password" name="hashed_password" value="<?php echo htmlentities($current_admin["hashed_password"]); ?>" />
+                        <input type="password" name="hashed_password" value="<?php echo htmlentities($admin["hashed_password"]); ?>" />
                     </p>
                     <input type="submit" name="submit" value="Edit Admin" />
                 </form>
@@ -59,6 +62,7 @@
                 <a href="manage_admins.php">Cancel</a>
             </div>
         </div>
+        <?php include ("../includes/layouts/footer.php") ?>
 <?php
     }
 ?>

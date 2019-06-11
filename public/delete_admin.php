@@ -3,7 +3,12 @@
 <?php require_once("../includes/functions.php"); ?>
 
 <?php
-    $id = $_GET["id"];
+    $admin = find_admin_by_id($_GET["id"]);
+    if (!$admin) {
+        redirect_to("manage_admins.php");
+    }
+
+    $id = $admin["id"];
     $query = "DELETE FROM admins WHERE id = {$id} LIMIT 1";
     $result = mysqli_query($connection, $query);
 
