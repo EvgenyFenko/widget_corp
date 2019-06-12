@@ -39,6 +39,7 @@
         </table>
         <br />
         <a href="new_admin.php">Add new admin</a>
+
     </div>
 </div>
 

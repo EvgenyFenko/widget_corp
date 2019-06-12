@@ -19,7 +19,7 @@
         if(empty($errors)) {
             $id = $admin["id"];
             $username = mysql_prep($_POST["username"]);
-            $password = mysql_prep($_POST["hashed_password"]);
+            $password = password_encrypt($_POST["hashed_password"]);
 
             $query = "UPDATE admins SET ";
             $query .= "username = '{$username}', ";
