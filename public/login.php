@@ -5,6 +5,7 @@
 
 
 <?php
+$username = "";
 if (isset($_POST["submit"])) {
 
     $required_fields = array("username", "password");
@@ -12,14 +13,18 @@ if (isset($_POST["submit"])) {
 
     if (empty($errors)) {
 
-    $found_admin = attempt_login($username, $password);
+        $username = $_POST["username"];
+        $password = $_POST["password"];
 
-        if ($result) {
-            $_SESSION["message"] = "Admin created.";
-            redirect_to("manage_admins.php");
-        } else {
-            $_SESSION["message"] = "Admin creation failed.";
-        }
+        $found_admin = attempt_login($username, $password);
+
+            if ($found_admin) {
+                $_SESSION["admin_id"] = $found_admin["id"];
+                $_SESSION["username"] = $found_admin["username"];
+                redirect_to("admin.php");
+            } else {
+                $_SESSION["message"] = "Username/password not found.";
+            }
     }
 }
 
@@ -40,7 +45,7 @@ if (isset($_POST["submit"])) {
         <h2>Login</h2>
         <form action="login.php" method="post">
             <p>Username:
-                <input type="text" name="username" value="">
+                <input type="text" name="username" value="<?php echo htmlentities($username); ?>">
             </p>
             <p>Password:
                 <input type="password" name="password" value="">
